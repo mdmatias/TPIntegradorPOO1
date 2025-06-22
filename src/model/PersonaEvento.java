@@ -6,8 +6,11 @@ import enums.TipoRol;
 
 public class PersonaEvento {
 
-	TipoRol rol;
-	LocalDate fechaAsignacion;
+	private TipoRol rol;
+	private LocalDate fechaAsignacion;
+	private Evento evento;
+    private Persona persona;
+
 
 	public PersonaEvento(TipoRol rol, LocalDate fechaAsignacion, Evento evento) {
 		this.rol = rol;
@@ -15,4 +18,26 @@ public class PersonaEvento {
 		this.evento = evento;
 	}
 
+
+	public TipoRol getRol() {
+		return rol;
+	}
+
+
+	public LocalDate getFechaAsignacion() {
+		return fechaAsignacion;
+	}
+
+
+	public Evento getEvento() {
+		return evento;
+	}
+
+
+	public Persona getPersona() {
+		return persona;
+	}
+
+
+	
 }

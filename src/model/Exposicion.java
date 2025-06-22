@@ -2,10 +2,11 @@ package model;
 
 import java.time.LocalDate;
 
-public class Exposicion {
+public class Exposicion extends Evento {
 
-	String tipoArte;
-	Persona curador;
+	private String tipoArte;
+	private Persona curador;
+	
 	public Exposicion(String nombre,LocalDate fechaInicio,int duracion,String tipoArte, Persona curador) {
 		this.tipoArte = tipoArte;
 		this.curador = curador;

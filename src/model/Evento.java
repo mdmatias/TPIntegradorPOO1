@@ -8,19 +8,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Evento {
+public abstract class Evento {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 
-	String nombre;
-	LocalDate fechaInicio;
-	int duracionEstimada;
-	EstadoEvento estado;
-	boolean requiereInscripcion;
-	int cupoMaximo;
-	boolean esAbierto;
+	private String nombre;
+	private LocalDate fechaInicio;
+	private int duracionEstimada;
+	private EstadoEvento estado;
+	private boolean requiereInscripcion;
+	private int cupoMaximo;
+	private boolean esAbierto;
 
 	// Constructor vacio
 	public Evento(){}
@@ -61,6 +61,54 @@ public class Evento {
 
 	public EstadoEvento getEstado() {
 		return estado;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setFechaInicio(LocalDate fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public void setDuracionEstimada(int duracionEstimada) {
+		this.duracionEstimada = duracionEstimada;
+	}
+
+	public void setEstado(EstadoEvento estado) {
+		this.estado = estado;
+	}
+
+	public boolean isRequiereInscripcion() {
+		return requiereInscripcion;
+	}
+
+	public void setRequiereInscripcion(boolean requiereInscripcion) {
+		this.requiereInscripcion = requiereInscripcion;
+	}
+
+	public int getCupoMaximo() {
+		return cupoMaximo;
+	}
+
+	public void setCupoMaximo(int cupoMaximo) {
+		this.cupoMaximo = cupoMaximo;
+	}
+
+	public boolean isEsAbierto() {
+		return esAbierto;
+	}
+
+	public void setEsAbierto(boolean esAbierto) {
+		this.esAbierto = esAbierto;
 	}
 
 	

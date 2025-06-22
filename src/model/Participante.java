@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 public class Participante {
 
-	int id;
-	String nombreCompleto;
-	String telefono;
-	String correoElectronico;
-	LocalDate fechaInscripcion;
+	private int id;
+	private String nombreCompleto;
+	private String telefono;
+	private String correoElectronico;
+	private LocalDate fechaInscripcion;
 
 
 	public Participante(String nombreCompleto, String telefono, String correoElectronico) {

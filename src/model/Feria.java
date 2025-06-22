@@ -4,13 +4,11 @@ import java.time.LocalDate;
 
 public class Feria extends Evento {
 
-	int cantidadStands;
-	boolean esAlAireLibre;
+	private int cantidadStands;
+	private boolean esAlAireLibre;
 
 	public Feria (String nombre, LocalDate fechaInicio, int duracionEstimada, int cantidadStands, boolean esAlAireLibre) {
-		this.nombre = nombre; 
-		this.fechaInicio = fechaInicio;
-		this.duracionEstimada = duracionEstimada;
+		super(nombre, fechaInicio, duracionEstimada); // Llamar al constructor de la clase padre Evento
 		this.cantidadStands = cantidadStands;
 		this.esAlAireLibre = esAlAireLibre;
 	}

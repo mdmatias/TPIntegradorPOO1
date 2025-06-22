@@ -2,11 +2,11 @@ package model;
 
 public class Persona {
 
-		int id;
-		String nombreCompleto;
-		String dni;
-		String telefono;
-		String correoElectronico;
+		private int id;
+		private String nombreCompleto;
+		private String dni;
+		private String telefono;
+		private String correoElectronico;
 
 
 		public Persona(int id, String nombreCompleto, String dni, String telefono, String correoElectronico) {

@@ -2,9 +2,10 @@ package model;
 
 public class Pelicula {
 
-	String titulo;
-	int orden;
-	int duracion; // en minutos
+	private String titulo;
+	private int orden;
+	private int duracion; // en minutos
+	
 	public Pelicula(String titulo, int orden, int duracion) {
 		this.titulo = titulo;
 		this.orden = orden;
@@ -18,6 +19,8 @@ public class Pelicula {
 		return orden;
 	}
 
-	
+	public int getDuracion() {
+		return duracion;
+	}
 
 }

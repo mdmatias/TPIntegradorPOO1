@@ -4,18 +4,31 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CicloCine {
+public class CicloCine extends Evento {
 
-	List<Pelicula> peliculas;
-	boolean hayCharlasPosteriores;
+    private List<Pelicula> peliculas;
+    private boolean hayCharlasPosteriores;
 
-	public CicloCine(String nombre, LocalDate fechaInicio, int duracion, boolean hayCharlasPosteriores) {
-		this.peliculas = new ArrayList<>();
-		this.hayCharlasPosteriores = hayCharlasPosteriores;
-		this.nombre = nombre;
-		this.fechaInicio = fechaInicio;
-		this.duracion = duracion;
-		
-	}
+    public CicloCine(String nombre, Pelicula pelicula, LocalDate fechaInicio, int duracionEstimada, boolean hayCharlasPosteriores) {
+        super(nombre, fechaInicio, duracionEstimada);
+        this.peliculas = new ArrayList<>();
+        this.hayCharlasPosteriores = hayCharlasPosteriores;
+        this.peliculas.add(pelicula); // se agrega la primera película
+    }
 
+    public CicloCine() {
+        this.peliculas = new ArrayList<>();
+    }
+
+    public void agregarPelicula(Pelicula pelicula) {
+        this.peliculas.add(pelicula);
+    }
+
+    public List<Pelicula> getPeliculas() {
+        return peliculas;
+    }
+
+    public boolean isHayCharlasPosteriores() {
+        return hayCharlasPosteriores;
+    }
 }

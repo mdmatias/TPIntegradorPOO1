@@ -1,31 +1,42 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import enums.ModalidadTaller;
+import enums.TipoRol;
 
 public class Taller extends Evento {
-	ModalidadTaller modalidad;
+
+	private ModalidadTaller modalidad;
+	private List<PersonaEvento> participantes;
+
 	
 	
-	public Taller(String nombre,LocalDate fechaInicio,int cupo,Persona instructor, ModalidadTaller modalidad) {
-		this.instructor = instructor;
+	public Taller(String nombre,LocalDate fechaInicio,int cupo,ModalidadTaller modalidad) {
+		super(nombre, fechaInicio, cupo); // Llamar al constructor de la clase padre Evento
 		this.modalidad = modalidad;
-		this.nombre = nombre;  //Hay que llamar al constructor de la clase padre Evento
-		this.fechaInicio = fechaInicio;
-		this.cupoMaximo = cupo;
+		this.participantes = new ArrayList<>();
 	}
-
-
-	public Persona getInstructor() {
-		return instructor;
-	}
-
 
 	public ModalidadTaller getModalidad() {
 		return modalidad;
 	}
 
+	 public List<PersonaEvento> getParticipantes() {
+        return participantes;
+    }
+
+	 // Método para obtener al instructor
+    public Persona getInstructor() {
+        for (PersonaEvento pe : participantes) {
+            if (pe.getRol() == TipoRol.INSTRUCTOR) {
+                return pe.getPersona();
+            }
+        }
+        return null; // No hay instructor asignado
+    }
 	
 
 }
