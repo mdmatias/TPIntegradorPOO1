@@ -12,7 +12,8 @@ public class PersonaEvento {
     private Persona persona;
 
 
-	public PersonaEvento(TipoRol rol, LocalDate fechaAsignacion, Evento evento) {
+	public PersonaEvento(TipoRol rol, LocalDate fechaAsignacion, Evento evento, Persona persona) {
+		this.persona = persona;
 		this.rol = rol;
 		this.fechaAsignacion = fechaAsignacion;
 		this.evento = evento;
