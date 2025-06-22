@@ -1,0 +1,6 @@
+-Se hizo todas las entidades
+-Se hicieron algunos Mapeos
+-En Evento faltan hacer mapeos
+
+
+En la mayoria de Clases le agregue comentarios para que se entienda que se hace con cada anotacion(Lo que esta con @)

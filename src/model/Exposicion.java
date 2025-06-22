@@ -1,7 +1,9 @@
 package model;
 
 import java.time.LocalDate;
+import jakarta.persistence.Entity;
 
+@Entity
 public class Exposicion extends Evento {
 
 	private String tipoArte;

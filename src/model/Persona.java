@@ -1,16 +1,45 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "personas")
 public class Persona {
 
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
+		
+		@Column(nullable = false) // Aseguramos que el nombre completo no sea nulo
 		private String nombreCompleto;
+		
+		@Column(nullable = false, unique = true) // Aseguramos que el DNI sea único y no nulo
 		private String dni;
+		
+		@Column(nullable = false) // Aseguramos que el teléfono no sea nulo
 		private String telefono;
+		
+		@Column(nullable = false, unique = true) // Aseguramos que el correo electrónico sea único y no nulo
 		private String correoElectronico;
 
+		@OneToMany(mappedBy = "persona", cascade = CascadeType.ALL) // Relación con PersonaEvento
+		private List<PersonaEvento> personaEventos = new ArrayList<>(); // Lista de eventos asociados a la persona
 
-		public Persona(int id, String nombreCompleto, String dni, String telefono, String correoElectronico) {
-			this.id = id;
+		public Persona() {
+			// Constructor por defecto
+		}
+
+		public Persona(String nombreCompleto, String dni, String telefono, String correoElectronico) {
 			this.nombreCompleto = nombreCompleto;
 			this.dni = dni;
 			this.telefono = telefono;

@@ -1,7 +1,14 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import enums.TipoRol;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "ferias")
 public class Feria extends Evento {
 
 	private int cantidadStands;
@@ -13,10 +20,18 @@ public class Feria extends Evento {
 		this.esAlAireLibre = esAlAireLibre;
 	}
 
+	public List<Persona> getOrganizadores() {
+    return getPersonasEventos().stream()
+        .filter(pe -> pe.getRol() == TipoRol.ORGANIZADOR)
+        .map(PersonaEvento::getPersona)
+        .toList();
+}
+
 	public boolean isEsAlAireLibre() {
 		return esAlAireLibre;
 	}
 	public int getCantidadStands() {
 		return cantidadStands;
 	}
+
 }

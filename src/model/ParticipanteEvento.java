@@ -1,9 +1,17 @@
 package model;
 
 import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "participantes_eventos")
 public class ParticipanteEvento {
 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id; //JPA necesita un identificador unico para cada entidad
 	private LocalDate fechaInscripcion;
 	private String estadoInscripcion;
 	private Participante participante;

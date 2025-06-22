@@ -1,13 +1,20 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import enums.EstadoEvento;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED) // Estrategia de herencia para eventos, permite que las subclases hereden de Evento
 public abstract class Evento {
 	
 	@Id
@@ -21,6 +28,10 @@ public abstract class Evento {
 	private boolean requiereInscripcion;
 	private int cupoMaximo;
 	private boolean esAbierto;
+
+
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL) // Relación con PersonaEvento
+	private List<PersonaEvento> personasEventos; // Lista de personas asociadas al evento
 
 	// Constructor vacio
 	public Evento(){}
@@ -109,6 +120,10 @@ public abstract class Evento {
 
 	public void setEsAbierto(boolean esAbierto) {
 		this.esAbierto = esAbierto;
+	}
+
+	public List<PersonaEvento> getPersonasEventos() {
+		return personasEventos;
 	}
 
 	

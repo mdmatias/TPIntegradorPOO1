@@ -1,35 +1,36 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import enums.ModalidadTaller;
 import enums.TipoRol;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 
+
+@Entity
+@Table(name = "talleres")
 public class Taller extends Evento {
 
+	@Enumerated(EnumType.STRING) // EnumType.STRING almacena el nombre del enum como cadena
+	@Column(nullable = false) // Aseguramos que la modalidad no sea nula
 	private ModalidadTaller modalidad;
-	private List<PersonaEvento> personaEvento;
-
 	
 	
 	public Taller(String nombre,LocalDate fechaInicio,int cupo,ModalidadTaller modalidad) {
-		super(nombre, fechaInicio, cupo); // Llamar al constructor de la clase padre Evento
+		super(nombre, fechaInicio, cupo); // Llama al constructor de la clase padre Evento
 		this.modalidad = modalidad;
-		this.personaEvento = new ArrayList<>();
 	}
 
 	public ModalidadTaller getModalidad() {
 		return modalidad;
 	}
 
-	 public List<PersonaEvento> getParticipantes() {
-        return personaEvento;
-    }
-
 	 // Método para obtener al instructor
     public Persona getInstructor() {
-        for (PersonaEvento pe : personaEvento) {
+        for (PersonaEvento pe : getPersonasEventos()) {
             if (pe.getRol() == TipoRol.INSTRUCTOR) {
                 return pe.getPersona();
             }
