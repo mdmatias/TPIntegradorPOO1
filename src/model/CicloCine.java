@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "ciclo_cine")
 public class CicloCine extends Evento {
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "CicloCine", cascade = CascadeType.ALL)
     private List<Pelicula> peliculas = new ArrayList<>();
 
     @Column(name = "hay_charlas_posteriores", nullable = false)

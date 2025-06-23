@@ -18,8 +18,8 @@ public class Pelicula {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; //Se agrego el id para que tenga una clave primaria (no puede ser titulo)
 	
-	@ManyToOne
-	@JoinColumn(name = "ciclo_cine_id", nullable = false) // FK a CicloCine
+	@ManyToOne(optional = true) // Permite que una película no pertenezca a un ciclo (opcional)
+	@JoinColumn(name = "ciclo_cine_id", nullable = true) // FK a CicloCine
 	private CicloCine cicloCine; // Relación con CicloCine
 
 	@Column(nullable = false)
