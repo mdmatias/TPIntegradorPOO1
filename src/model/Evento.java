@@ -1,11 +1,14 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import enums.EstadoEvento;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,11 +22,13 @@ public abstract class Evento {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	private int id;
 
 	private String nombre;
 	private LocalDate fechaInicio;
 	private int duracionEstimada;
+	
+	@Enumerated(EnumType.STRING) // EnumType.STRING almacena el nombre del enum como cadena
 	private EstadoEvento estado;
 	private boolean requiereInscripcion;
 	private int cupoMaximo;
@@ -33,8 +38,15 @@ public abstract class Evento {
 	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL) // Relación con PersonaEvento
 	private List<PersonaEvento> personasEventos; // Lista de personas asociadas al evento
 
+	@OneToMany(mappedBy = "evento", cascade = CascadeType.ALL) // Relación con ParticipanteEvento
+	private List<ParticipanteEvento> participantesEventos; // Lista de participantes asociados al evento
+
 	// Constructor vacio
-	public Evento(){}
+	public Evento() {
+	this.personasEventos = new ArrayList<>();
+	this.participantesEventos = new ArrayList<>();
+}
+
 
 	public Evento(String nombre, LocalDate fechaInicio, int duracionEstimada) {
 		this.nombre = nombre;
@@ -124,6 +136,18 @@ public abstract class Evento {
 
 	public List<PersonaEvento> getPersonasEventos() {
 		return personasEventos;
+	}
+
+	public void setPersonasEventos(List<PersonaEvento> personasEventos) {
+		this.personasEventos = personasEventos;
+	}
+
+	public List<ParticipanteEvento> getParticipantesEventos() {
+		return participantesEventos;
+	}
+
+	public void setParticipantesEventos(List<ParticipanteEvento> participantesEventos) {
+		this.participantesEventos = participantesEventos;
 	}
 
 	

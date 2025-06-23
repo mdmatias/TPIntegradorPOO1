@@ -18,6 +18,10 @@ public class Taller extends Evento {
 	@Column(nullable = false) // Aseguramos que la modalidad no sea nula
 	private ModalidadTaller modalidad;
 	
+	// Constructor vacío
+	public Taller() {
+		super(); // Llama al constructor de la clase padre Evento
+	}
 	
 	public Taller(String nombre,LocalDate fechaInicio,int cupo,ModalidadTaller modalidad) {
 		super(nombre, fechaInicio, cupo); // Llama al constructor de la clase padre Evento
@@ -37,6 +41,11 @@ public class Taller extends Evento {
         }
         return null; // No hay instructor asignado
     }
+
+	public void setModalidad(ModalidadTaller modalidad) {
+		this.modalidad = modalidad;
+	}
+	
 	
 
 }

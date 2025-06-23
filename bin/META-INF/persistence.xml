@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-
 instance" version="2.2" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-    <persistence-unit name="EmpresaPU" transaction-type="RESOURCE_LOCAL">      
+    <persistence-unit name="Eventos" transaction-type="RESOURCE_LOCAL">      
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/empresa" />
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/GestorEventos" />
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="jakarta.persistence.jdbc.user" value="postgres" />
-            <property name="jakarta.persistence.jdbc.password" value="postgres" />
+            <property name="jakarta.persistence.jdbc.password" value="rckolv" />
             <property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
-            <!-- <property name="eclipselink.logging.level" value="FINEST" /> -->
+
+            <property name="eclipselink.logging.level.sql" value="FINE" /> <!--  Con esta propiedad se muestra el SQL generado -->
+            <property name="eclipselink.logging.parameters" value="true" /> <!-- Con esta propiedad se muestran los parámetros de las consultas SQL -->
         </properties>
     </persistence-unit>
 </persistence>

@@ -17,7 +17,7 @@ public class CicloCine extends Evento {
     private boolean hayCharlasPosteriores;
 
     public CicloCine() {
-        // Constructor por defecto
+        super();
     }
 
     public CicloCine(String nombre, Pelicula pelicula, LocalDate fechaInicio, int duracionEstimada, boolean hayCharlasPosteriores) {

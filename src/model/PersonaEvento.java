@@ -66,6 +66,30 @@ public class PersonaEvento {
 		return persona;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setRol(TipoRol rol) {
+		this.rol = rol;
+	}
+
+	public void setFechaAsignacion(LocalDate fechaAsignacion) {
+		this.fechaAsignacion = fechaAsignacion;
+	}
+
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
 
 	
 }

@@ -75,6 +75,36 @@ public class Persona {
 			this.telefono = telefono;
 			this.correoElectronico = correoElectronico;
 		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public void setNombreCompleto(String nombreCompleto) {
+			this.nombreCompleto = nombreCompleto;
+		}
+
+		public void setDni(String dni) {
+			this.dni = dni;
+		}
+
+		public void setTelefono(String telefono) {
+			this.telefono = telefono;
+		}
+
+		public void setCorreoElectronico(String correoElectronico) {
+			this.correoElectronico = correoElectronico;
+		}
+
+		public List<PersonaEvento> getPersonaEventos() {
+			return personaEventos;
+		}
+
+		public void setPersonaEventos(List<PersonaEvento> personaEventos) {
+			this.personaEventos = personaEventos;
+		}
+
+		
 		
 }
 

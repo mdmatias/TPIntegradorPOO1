@@ -4,21 +4,30 @@ import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "participantes_eventos")
 public class ParticipanteEvento {
 
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; //JPA necesita un identificador unico para cada entidad
 	private LocalDate fechaInscripcion;
 	private String estadoInscripcion;
-	private Participante participante;
-	private Evento evento;
 	
-	public ParticipanteEvento(LocalDate fechaInscripcion, String estadoInscripcion, Participante participante,
-			Evento evento) {
+	@ManyToOne
+	private Participante participante;
+	
+	@ManyToOne
+	private Evento evento;
+
+	public ParticipanteEvento() {
+	}
+
+	public ParticipanteEvento(LocalDate fechaInscripcion, String estadoInscripcion, Participante participante,Evento evento) {
 		this.fechaInscripcion = fechaInscripcion;
 		this.estadoInscripcion = estadoInscripcion;
 		this.participante = participante;
@@ -55,6 +64,14 @@ public class ParticipanteEvento {
 
 	public void setEvento(Evento evento) {
 		this.evento = evento;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	

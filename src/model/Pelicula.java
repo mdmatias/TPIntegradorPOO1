@@ -28,10 +28,11 @@ public class Pelicula {
 		// Constructor por defecto
 	}
 
-	public Pelicula(String titulo, int orden, int duracion) {  //Id no viene como parametro porque es autogenerado
+	public Pelicula(String titulo, int orden, int duracion, CicloCine cicloCine) {  //Id no viene como parametro porque es autogenerado
 		this.titulo = titulo;
 		this.orden = orden;
 		this.duracion = duracion;
+		this.cicloCine = cicloCine;
 	}
 	
 	public String getTitulo() {
