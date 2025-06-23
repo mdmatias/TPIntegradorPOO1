@@ -63,5 +63,21 @@ public class Pelicula {
 		this.cicloCine = cicloCine;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public void setOrden(int orden) {
+		this.orden = orden;
+	}
+
+	public void setDuracion(int duracion) {
+		this.duracion = duracion;
+	}
+
 	
 }
