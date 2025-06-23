@@ -27,18 +27,18 @@ public abstract class Evento {
 
 	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private String nombre;
-	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
+	@Column(nullable = false) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private LocalDate fechaInicio;
-	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
+	@Column(nullable = false) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private int duracionEstimada;
 	@Enumerated(EnumType.STRING) // EnumType.STRING almacena el nombre del enum como cadena
-	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
+	@Column(nullable = false) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private EstadoEvento estado;
-	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
+	@Column(nullable = false) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private boolean requiereInscripcion;
-	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
+	@Column(nullable = false) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private int cupoMaximo;
-	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
+	@Column(nullable = false) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private boolean esAbierto;
 
 

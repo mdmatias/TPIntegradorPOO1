@@ -10,7 +10,6 @@ import java.util.List;
 public class CicloCine extends Evento {
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ciclo_cine_id") // FK en la tabla Pelicula
     private List<Pelicula> peliculas = new ArrayList<>();
 
     @Column(name = "hay_charlas_posteriores", nullable = false)
@@ -42,4 +41,13 @@ public class CicloCine extends Evento {
     public void setHayCharlasPosteriores(boolean hayCharlasPosteriores) {
         this.hayCharlasPosteriores = hayCharlasPosteriores;
     }
+
+    public void setPeliculas(List<Pelicula> peliculas) {
+        this.peliculas = peliculas;
+    }
+
+    
+
 }
+
+
