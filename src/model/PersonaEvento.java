@@ -24,6 +24,7 @@ public class PersonaEvento {
 	@Enumerated(EnumType.STRING) // EnumType.STRING almacena el nombre del enum como cadena
 	@Column(nullable = false) // Aseguramos que el rol no sea nulo
 	private TipoRol rol;
+	@Column(name = "fecha_asignacion", nullable = false) // Aseguramos que la fecha de asignación no sea nula
 	private LocalDate fechaAsignacion;
 	
 	@ManyToOne

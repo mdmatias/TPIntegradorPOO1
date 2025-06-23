@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,8 +16,11 @@ public class ParticipanteEvento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, unique = true)
 	private int id; //JPA necesita un identificador unico para cada entidad
+	@Column(name = "fecha_inscripcion", nullable = false)
 	private LocalDate fechaInscripcion;
+	@Column(name = "estado_inscripcion", nullable = false)
 	private String estadoInscripcion;
 	
 	@ManyToOne

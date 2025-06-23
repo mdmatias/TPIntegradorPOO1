@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,10 +19,15 @@ public class Participante {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, unique = true)
 	private int id;
+	@Column(nullable = false)
 	private String nombreCompleto;
+	@Column(nullable = false)
 	private String telefono;
+	@Column(nullable = false, unique = true)
 	private String correoElectronico;
+	@Column(name = "fecha_inscripcion", nullable = false)
 	private LocalDate fechaInscripcion;
 
 	@OneToMany(mappedBy = "participante", cascade = CascadeType.ALL)

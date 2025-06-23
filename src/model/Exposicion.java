@@ -3,12 +3,14 @@ package model;
 import java.time.LocalDate;
 
 import enums.TipoRol;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 @Entity
 public class Exposicion extends Evento {
 
-	private String tipoArte;
+	@Column(nullable = false) // Aseguramos que el tipo de arte no sea nulo
+    private String tipoArte;
 	
 
 	// Constructor vacio

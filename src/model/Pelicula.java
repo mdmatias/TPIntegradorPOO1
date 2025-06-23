@@ -1,5 +1,7 @@
 package model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.ColumnResult;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,8 +22,11 @@ public class Pelicula {
 	@JoinColumn(name = "ciclo_cine_id", nullable = false) // FK a CicloCine
 	private CicloCine cicloCine; // Relación con CicloCine
 
+	@Column(nullable = false)
 	private String titulo;
+	@Column(nullable = false)
 	private int orden;
+	@Column(nullable = false)
 	private int duracion; // en minutos
 	
 	public Pelicula() {

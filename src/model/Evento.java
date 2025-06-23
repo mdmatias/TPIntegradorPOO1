@@ -6,6 +6,7 @@ import java.util.List;
 
 import enums.EstadoEvento;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,14 +25,20 @@ public abstract class Evento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private String nombre;
+	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private LocalDate fechaInicio;
+	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private int duracionEstimada;
-	
 	@Enumerated(EnumType.STRING) // EnumType.STRING almacena el nombre del enum como cadena
+	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private EstadoEvento estado;
+	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private boolean requiereInscripcion;
+	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private int cupoMaximo;
+	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private boolean esAbierto;
 
 

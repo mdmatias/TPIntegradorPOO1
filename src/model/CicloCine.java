@@ -13,7 +13,7 @@ public class CicloCine extends Evento {
     @JoinColumn(name = "ciclo_cine_id") // FK en la tabla Pelicula
     private List<Pelicula> peliculas = new ArrayList<>();
 
-    @Column(name = "hay_charlas_posteriores")
+    @Column(name = "hay_charlas_posteriores", nullable = false)
     private boolean hayCharlasPosteriores;
 
     public CicloCine() {

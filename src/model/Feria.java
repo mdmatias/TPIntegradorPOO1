@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import enums.TipoRol;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -11,7 +12,9 @@ import jakarta.persistence.Table;
 @Table(name = "ferias")
 public class Feria extends Evento {
 
+	@Column(nullable = false) // Aseguramos que la cantidad de stands no sea nula
 	private int cantidadStands;
+	@Column(nullable = false, unique = true) // Aseguramos que el nombre del evento no sea nulo y sea único
 	private boolean esAlAireLibre;
 
 	public Feria() {
