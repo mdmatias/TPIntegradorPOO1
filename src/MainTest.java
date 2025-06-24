@@ -22,14 +22,15 @@ public class MainTest {
             Pelicula peliculaSuelta = new Pelicula("Película Independiente", 1, 100, null);
             em.persist(peliculaSuelta);
 
-            // Crear un ciclo de cine
+            
+            //Crear un ciclo de cine
             CicloCine ciclo = new CicloCine();
             ciclo.setNombre("Ciclo de Acción");
             ciclo.setFechaInicio(LocalDate.of(2025, 7, 1));
             ciclo.setDuracionEstimada(180);
             ciclo.setHayCharlasPosteriores(true);
             ciclo.setEstado(EstadoEvento.EN_EJECUCION);
-
+           
             // Crear películas para el ciclo (sin asignar ciclo aún)
             Pelicula p1 = new Pelicula("Die Hard", 1, 132, null);
             Pelicula p2 = new Pelicula("Mad Max", 2, 120, null);

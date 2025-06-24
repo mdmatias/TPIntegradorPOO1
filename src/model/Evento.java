@@ -66,11 +66,18 @@ public abstract class Evento {
 	}
 
 	public void agregarResponsable(Persona persona){
-		
+		if (persona != null && !this.personasEventos.stream().anyMatch(pe -> pe.getPersona().equals(persona))) {
+			PersonaEvento personaEvento = new PersonaEvento(this, persona);
+			this.personasEventos.add(personaEvento);
+			persona.getPersonaEventos().add(personaEvento); // Aseguramos que la relación sea bidireccional
+		}
 	}
 	
 	public void removerResponsable(Persona persona){
-		
+		if (persona != null) {
+			this.personasEventos.removeIf(pe -> pe.getPersona().equals(persona));
+			persona.getPersonaEventos().removeIf(pe -> pe.getEvento().equals(this)); // Aseguramos que la relación sea bidireccional
+		}
 	}
 
 	public boolean puedeInscribirse() {

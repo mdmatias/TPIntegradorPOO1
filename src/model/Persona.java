@@ -33,7 +33,7 @@ public class Persona {
 		private String correoElectronico;
 
 		@OneToMany(mappedBy = "persona", cascade = CascadeType.ALL) // Relación con PersonaEvento
-		private List<PersonaEvento> personaEventos = new ArrayList<>(); // Lista de eventos asociados a la persona
+		private List<PersonaEvento> personasEventos = new ArrayList<>(); // Lista de eventos asociados a la persona
 
 		public Persona() {
 			// Constructor por defecto
@@ -97,13 +97,8 @@ public class Persona {
 		}
 
 		public List<PersonaEvento> getPersonaEventos() {
-			return personaEventos;
+			return personasEventos;
 		}
-
-		public void setPersonaEventos(List<PersonaEvento> personaEventos) {
-			this.personaEventos = personaEventos;
-		}
-
 		
 		
 }

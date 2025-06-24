@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.Entity;
@@ -38,6 +40,7 @@ public class Pelicula {
 		this.orden = orden;
 		this.duracion = duracion;
 		this.cicloCine = cicloCine;
+		
 	}
 	
 	public String getTitulo() {

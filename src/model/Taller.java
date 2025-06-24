@@ -23,7 +23,7 @@ public class Taller extends Evento {
 		super(); // Llama al constructor de la clase padre Evento
 	}
 	
-	public Taller(String nombre,LocalDate fechaInicio,int cupo,ModalidadTaller modalidad) {
+	public Taller(String nombre,LocalDate fechaInicio,int cupo,ModalidadTaller modalidad, boolean requiereInscripcion, int cupoMaximo, boolean esAbierto) {
 		super(nombre, fechaInicio, cupo); // Llama al constructor de la clase padre Evento
 		this.modalidad = modalidad;
 	}

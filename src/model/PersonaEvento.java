@@ -91,6 +91,11 @@ public class PersonaEvento {
 		this.persona = persona;
 	}
 
+	public PersonaEvento(Evento evento, Persona persona) {
+		this.evento = evento;
+		this.persona = persona;
+	}
+
 
 	
 }
