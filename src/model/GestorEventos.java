@@ -3,52 +3,129 @@ package model;
 import java.time.LocalDate;
 import java.util.List;
 
-import enums.ModalidadTaller;
-import enums.TipoEntrada;
-import enums.TipoEvento;
+import enums.EstadoEvento;
+import enums.TipoRol;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+
 public class GestorEventos {
 
-	private List<Evento> eventos;
-	private List<Persona> personas;
-	private List<ParticipanteEvento> participanteEventos;
-	private ModalidadTaller modalidad;
+    private EntityManager em;
 
-	public GestorEventos(List<Evento> eventos, List<Persona> personas, List<ParticipanteEvento> participanteEventos) {
-		this.eventos = eventos;
-		this.personas = personas;
-		this.participanteEventos = participanteEventos;
-	}
-
-	public void crearEvento(String nombre, LocalDate fechaInicio, int duracionEstimada, TipoEvento tipoEvento,
-                        ModalidadTaller modalidad, boolean requiereInscripcion, int cupoMaximo, boolean esAbierto,
-						int cantidadStands, boolean esAlAireLibre, boolean hayCharlasPosteriores,TipoEntrada tipoEntrada,
-						Pelicula pelicula,String tipoArte) {
-    
-    Evento evento;
-
-    switch (tipoEvento) {
-        case TALLER:
-            evento = new Taller(nombre, fechaInicio, duracionEstimada, modalidad, requiereInscripcion, cupoMaximo, esAbierto);
-            break;
-        case FERIA:
-            evento = new Feria(nombre, fechaInicio, duracionEstimada, requiereInscripcion,cantidadStands,esAlAireLibre); // cantidadStands y esAlAireLibre se pueden ajustar según sea necesario
-            break;
-        case CICLOCINE:
-            evento = new CicloCine(nombre, pelicula, fechaInicio, duracionEstimada, hayCharlasPosteriores);
-            break;
-	case CONCIERTO:
-			evento = new Concierto(nombre, fechaInicio, duracionEstimada, tipoEntrada);
-			break;
-	case EXPOSICION:
-			evento = new Exposicion(nombre, fechaInicio, duracionEstimada,tipoArte);
-			break;
-        default:
-            throw new IllegalArgumentException("Tipo de evento no soportado.");
+    public GestorEventos(EntityManager em) {
+        this.em = em;
     }
 
-    eventos.add(evento);
+    // Método para persistir cualquier tipo de evento
+    public void crearEvento(Evento evento) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(evento);
+        tx.commit();
+    }
+
+    public EntityManager getEm() {
+        return em;
+    }
+
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+
+    public void modificarEvento(Evento evento) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.merge(evento);
+        tx.commit();
+    }
+
+    public void eliminarEvento(Evento evento) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.remove(em.contains(evento) ? evento : em.merge(evento));
+        tx.commit();
+    }
+
+    public Persona crearPersona(Persona persona) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(persona);
+        tx.commit();
+        return persona; // Retorna la persona creada
+    }
+
+    public Persona modificarPersona(Persona persona) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.merge(persona);
+        tx.commit();
+        return persona; // Retorna la persona modificada
+    }
+
+    public void eliminarPersona(Persona persona) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.remove(em.contains(persona) ? persona : em.merge(persona));
+        tx.commit();
+    }
+
+    public void asociarPersonaAEvento(Persona persona, Evento evento, TipoRol rol, LocalDate fechaAsignacion) {
+    EntityTransaction tx = em.getTransaction();
+    try {
+        tx.begin();
+        PersonaEvento personaEvento = new PersonaEvento(rol, fechaAsignacion, evento, persona);
+        em.persist(personaEvento);
+        tx.commit();
+    } catch (Exception e) {
+        if (tx.isActive()) tx.rollback();
+        throw e;
+    }
 }
 
+   public boolean inscribirParticipante(Evento evento, ParticipanteEvento participanteEvento) {
+    EntityTransaction tx = em.getTransaction();
+    try {
+        tx.begin();
+        evento.inscribirParticipante(participanteEvento);
+        em.merge(evento); // Persistir cambios en evento y lista de participantes
+        tx.commit();
+        return true;
+    } catch (Exception e) {
+        if (tx.isActive()) tx.rollback();
+        return false;
+    }
+}
+
+    public void cambiarEstadoEvento(Evento evento, EstadoEvento nuevoEstado) {
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        evento.cambiarEstado(nuevoEstado);
+        em.merge(evento); // Persistir cambios en el evento
+        tx.commit();
+    }
+
+   public List<ParticipanteEvento> listarParticipantes(Evento evento) {
+    return em.createQuery(
+        "SELECT p FROM ParticipanteEvento p WHERE p.evento = :evento", ParticipanteEvento.class)
+        .setParameter("evento", evento)
+        .getResultList();
+}
+
+
+    public List<Evento> getCalendarioEventos() {
+    return em.createQuery("SELECT e FROM Evento e ORDER BY e.fechaInicio", Evento.class)
+             .getResultList();
+}
+
+    public boolean validarCupoMaximo(Evento evento) {
+        if (evento.getCupoMaximo() <= 0) {
+            return false; // No hay cupo máximo definido
+        }
+        long inscritos = evento.getParticipantesEventos().stream()
+                .filter(pe -> pe.getEvento().equals(evento))
+                .count();
+        return inscritos < evento.getCupoMaximo();
+    }
 
 
 }

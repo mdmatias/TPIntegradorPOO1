@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import enums.EstadoEvento;
 import enums.TipoEntrada;
 import enums.TipoRol;
 import jakarta.persistence.Column;
@@ -24,8 +26,8 @@ public class Concierto extends Evento {
         super();
     }
 
-    public Concierto(String nombre, LocalDate fechaInicio, int duracionEstimada, TipoEntrada tipoEntrada) {
-        super(nombre, fechaInicio, duracionEstimada);
+    public Concierto(String nombre, LocalDate fechaInicio, int duracionEstimada, TipoEntrada tipoEntrada,EstadoEvento estado) {
+        super(nombre, fechaInicio, duracionEstimada,estado);
         this.tipoEntrada = tipoEntrada;
     }
 

@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
+import enums.EstadoEvento;
 import enums.TipoRol;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,8 +19,8 @@ public class Exposicion extends Evento {
 		super();
 	}
 
-	public Exposicion(String nombre, LocalDate fechaInicio, int duracion, String tipoArte) {
-        super(nombre, fechaInicio, duracion);
+	public Exposicion(String nombre, LocalDate fechaInicio, int duracion, String tipoArte,EstadoEvento estado) {
+        super(nombre, fechaInicio, duracion,estado);
         this.tipoArte = tipoArte;
     }
 

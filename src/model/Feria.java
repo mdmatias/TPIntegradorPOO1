@@ -3,6 +3,9 @@ package model;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.eclipse.persistence.internal.jpa.parsing.EscapeNode;
+
+import enums.EstadoEvento;
 import enums.TipoRol;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,8 +24,8 @@ public class Feria extends Evento {
 		super(); // Llamar al constructor de la clase padre Evento
 	}
 
-	public Feria (String nombre, LocalDate fechaInicio, int duracionEstimada, boolean requiereInscripcion, int cantidadStands, boolean esAlAireLibre) {
-		super(nombre, fechaInicio, duracionEstimada); // Llamar al constructor de la clase padre Evento
+	public Feria (String nombre, LocalDate fechaInicio, int duracionEstimada, boolean requiereInscripcion, int cantidadStands, boolean esAlAireLibre,EstadoEvento estado) {
+		super(nombre, fechaInicio, duracionEstimada,estado); // Llamar al constructor de la clase padre Evento
 		this.cantidadStands = cantidadStands;
 		this.esAlAireLibre = esAlAireLibre;
 	}

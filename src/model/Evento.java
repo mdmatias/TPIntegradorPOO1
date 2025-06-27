@@ -55,10 +55,11 @@ public abstract class Evento {
 }
 
 
-	public Evento(String nombre, LocalDate fechaInicio, int duracionEstimada) {
+	public Evento(String nombre, LocalDate fechaInicio, int duracionEstimada,EstadoEvento estado) {
 		this.nombre = nombre;
 		this.fechaInicio = fechaInicio;
 		this.duracionEstimada = duracionEstimada;
+		this.estado = estado;
 	}
 
 	public void cambiarEstado(EstadoEvento nuevoEvento) {
@@ -79,6 +80,14 @@ public abstract class Evento {
 			persona.getPersonaEventos().removeIf(pe -> pe.getEvento().equals(this)); // Aseguramos que la relación sea bidireccional
 		}
 	}
+
+	public void inscribirParticipante(ParticipanteEvento participanteEvento) {
+    if (participanteEvento != null && !participantesEventos.contains(participanteEvento)) {
+        participantesEventos.add(participanteEvento);
+        participanteEvento.setEvento(this); // Mantener relación bidireccional
+    }
+}
+
 
 	public boolean puedeInscribirse() {
 		return this.estado == EstadoEvento.PLANIFICACION && this.requiereInscripcion && this.cupoMaximo > 0;

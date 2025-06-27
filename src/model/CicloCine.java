@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import enums.EstadoEvento;
+
 @Entity
 @Table(name = "ciclo_cine")
 public class CicloCine extends Evento {
@@ -19,8 +21,8 @@ public class CicloCine extends Evento {
         super();
     }
 
-    public CicloCine(String nombre, Pelicula pelicula, LocalDate fechaInicio, int duracionEstimada, boolean hayCharlasPosteriores) {
-        super(nombre, fechaInicio, duracionEstimada);
+    public CicloCine(String nombre, Pelicula pelicula, LocalDate fechaInicio, int duracionEstimada, boolean hayCharlasPosteriores,EstadoEvento estado) {
+        super(nombre, fechaInicio, duracionEstimada,estado);
         this.hayCharlasPosteriores = hayCharlasPosteriores;
         this.peliculas.add(pelicula);
     }

@@ -1,6 +1,8 @@
 package model;
 
 import java.time.LocalDate;
+
+import enums.EstadoEvento;
 import enums.ModalidadTaller;
 import enums.TipoRol;
 import jakarta.persistence.Column;
@@ -23,8 +25,8 @@ public class Taller extends Evento {
 		super(); // Llama al constructor de la clase padre Evento
 	}
 	
-	public Taller(String nombre,LocalDate fechaInicio,int cupo,ModalidadTaller modalidad, boolean requiereInscripcion, int cupoMaximo, boolean esAbierto) {
-		super(nombre, fechaInicio, cupo); // Llama al constructor de la clase padre Evento
+	public Taller(String nombre,LocalDate fechaInicio,ModalidadTaller modalidad, boolean requiereInscripcion, int cupoMaximo, boolean esAbierto,EstadoEvento estado) {
+		super(nombre, fechaInicio, cupoMaximo,estado); // Llama al constructor de la clase padre Evento
 		this.modalidad = modalidad;
 	}
 
